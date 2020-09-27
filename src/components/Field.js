@@ -6,7 +6,11 @@ export default class Field extends Component {
     componentDidMount() {
         const { registerEntity } = this.context;
         // 注册
-        registerEntity(this);
+        this.cancelRegister = registerEntity(this);
+    }
+    componentWillUnmount() {
+        // 取消注册
+        this.cancelRegister && this.cancelRegister()
     }
     onStoreChange = () => {
         this.forceUpdate()
